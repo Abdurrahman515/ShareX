@@ -1,0 +1,73 @@
+.loading-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px; /* Adjust as needed */
+  
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  background-color: #222; /* Dot color */
+  border-radius: 50%;
+  margin: 0 2px;
+  animation: bounce 0.6s infinite alternate; /* Apply animation */
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s; /* Stagger animation for second dot */
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s; /* Stagger animation for third dot */
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-2px); /* Adjust bounce height */
+  }
+}
+
+.microphone-icon {
+  width: 30px;
+  height: 30px;
+  background-color: #3a3939; /* Example color */
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 18px;
+}
+
+.microphone-icon.loading::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -5px;
+  bottom: -5px;
+  border: 2px solid #3b3a3a;
+  border-radius: 50%;
+  animation: loading 1.5s infinite ease-out;
+}
+
+@keyframes loading {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.7;
+  }
+}

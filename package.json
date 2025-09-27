@@ -1,0 +1,17 @@
+{
+  "name": "sharex",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "backend:dev": "cd backend && npm run dev",
+    "backend:start": "cd backend && node server.js",
+    "frontend:start": "cd frontend && npm run dev",
+    "start": "cd backend && npm start",
+    "build": "npm install --prefix backend && npm install --prefix frontend && npm run build --prefix frontend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

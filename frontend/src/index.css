@@ -1,0 +1,48 @@
+.icon-container{
+    border-radius: 50%;
+    padding: 8px;
+    width: 40px;
+    height: 40px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.icon-container:hover{
+    background-color: #1e1e1e;
+}
+
+::-webkit-scrollbar{
+    width: 7px;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-track{
+    background-color: #1e1e1e;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #888;
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: #555;
+}
+
+html, body {
+  scroll-snap-type: y mandatory;
+}
+
+video {
+  scroll-snap-align: start;
+}
+
+/* Chrome, Edge, Safari */
+textarea::-webkit-resizer {
+  display: none;
+}
+
+/* Firefox */
+textarea::-moz-resizer {
+  display: none;
+}
