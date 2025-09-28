@@ -20,7 +20,7 @@ export const SocketContextProvider = ({ children }) => {
     useEffect(() => {
         const socket = io("wss://sharex.us-east-1.elasticbeanstalk.com", {
             path: "/socket.io",
-            transports: ["websocket"],
+            transports: ["websocket", "polling"],
             query: {
                 userId: user?._id
             }
