@@ -28,7 +28,7 @@ export default function SignupCard() {
     username: inputs.username.trim(),
     email: inputs.email.trim(),
     password: inputs.password.trim(),
-    lang: navigator.language
+    lang: navigator.language.slice(0, 2)
   };
 
   const handleSignup = async (e) => {
