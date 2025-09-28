@@ -15,7 +15,7 @@ export const getRecipientSocketId = (recipientId) => {
 export function initSocketServer(httpServer){
     const io = new Server(httpServer, {
         cors: {
-            origin: "http://localhost:3000",
+            origin: ["http://localhost:3000", "https://d313oyzovamctv.cloudfront.net"],
             methods: ["GET", "POST"]
         }
     });

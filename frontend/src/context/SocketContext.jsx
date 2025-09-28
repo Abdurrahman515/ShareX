@@ -16,8 +16,9 @@ export const SocketContextProvider = ({ children }) => {
 
     const user = useRecoilValue(userAtom);
 
+    // type http://localhost:5000 on development
     useEffect(() => {
-        const socket = io("http://localhost:5000", {
+        const socket = io("sharex.us-east-1.elasticbeanstalk.com", {
             query: {
                 userId: user?._id
             }
