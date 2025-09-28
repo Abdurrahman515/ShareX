@@ -1,5 +1,5 @@
 import { Box, CloseButton, Container } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import UserPage from './pages/UserPage'
 import PostPage from './pages/PostPage'
@@ -62,19 +62,18 @@ const App = () => {
     }
   }, [showErrorToast, showSuccessToast, lang]);
 
-  useEffect(() => {
-    function urlBase64ToUint8Array(base64String) {
-      const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
-      const base64 = (base64String + padding)
-        .replace(/-/g, '+')
-        .replace(/_/g, '/');
+  function urlBase64ToUint8Array(base64String) {
+    const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
+    const base64 = (base64String + padding)
+      .replace(/-/g, '+')
+      .replace(/_/g, '/');
 
-      const rawData = atob(base64);
-      return Uint8Array.from([...rawData].map(char => char.charCodeAt(0)));
-    };
+    const rawData = atob(base64);
+    return Uint8Array.from([...rawData].map(char => char.charCodeAt(0)));
+  };
 
-    const subscribeToPush = async() => {
-      if(!user) return;
+  const subscribeToPush = useCallback(async () => {
+    if(!user) return;
       const publicVapidKey = 'BHt94RLr72vwxxXH0GeBC8PTdpP7w14qbwDL_gCUuNoH0Btn9u1ErnmG7n2iucal94eeRom3mMbvzMSppxhHKpI'
       try {
         if ('serviceWorker' in navigator){
@@ -100,12 +99,12 @@ const App = () => {
         };
       } catch (error) {
         console.log(error || 'Something went wrong!');
-      }
     };
-
-
-    subscribeToPush();
   }, [showErrorToast, user]);
+
+  useEffect(() => {
+    subscribeToPush();
+  }, [showErrorToast, user, subscribeToPush]);
 
   useEffect(() => {
       socket?.on("newMessage", (message) => {
