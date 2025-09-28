@@ -148,47 +148,57 @@ const HomePage = () => {
             <Skeleton h={'300px'} width={'32%'} />
           </Flex>
         )}
-        
-        <InfiniteScroll
-          dataLength={posts.length}
-          next={() => getFeedPosts(page)}
-          hasMore={hasMore}
-          loader={
-            (
-              <Flex justify="center" py={4}>
-                <Spinner size="md" />
-              </Flex>
-            )
-          }
-          endMessage={
-            (
-              <Flex justify={'center'} py={6}>
-                <Box fontWeight={'bold'} color={'gray.500'}>
-                  {lang === 'ar' ? "لا مزيد من المنشورات!" : "No more posts!"}
-                </Box>
-              </Flex>
-            )
-          }
-        >
-          {posts.length > 0 && posts.map((post, postIdx) => ( 
-            <React.Fragment key={post._id}>
-              <Post key={post._id} post={post} postedBy={post.postedBy}/>
-              {postIdx === 2 && !fetchingReels && reels.length > 0 && (
-                <Flex maxH={'300px'} maxW={"100%"} ml={6} my={5} cursor={'pointer'}>
-                  {reels.map((reel, idx) => (
-                    <Reel 
-                      key={reel._id} 
-                      video={reel} 
-                      postedBy={reel.postedBy} 
-                      idx={idx}
-                    />
-                  ))}
-                </Flex>
-              )}
-            </React.Fragment>
 
-          ))}
-        </InfiniteScroll>
+        {posts.length === 0 && (
+          <Flex justify={'center'} py={6}>
+            <Box fontWeight={'bold'} color={'gray.500'}>
+              {lang === 'ar' ? "لا يوجد أي منشور!" : "There are no post!"}
+            </Box>
+          </Flex>
+        )}
+        
+        {posts.length > 0 && (
+          <InfiniteScroll
+            dataLength={posts.length}
+            next={() => getFeedPosts(page)}
+            hasMore={hasMore}
+            loader={
+              (
+                <Flex justify="center" py={4}>
+                  <Spinner size="md" />
+                </Flex>
+              )
+            }
+            endMessage={
+              (
+                <Flex justify={'center'} py={6}>
+                  <Box fontWeight={'bold'} color={'gray.500'}>
+                    {lang === 'ar' ? "لا مزيد من المنشورات!" : "No more posts!"}
+                  </Box>
+                </Flex>
+              )
+            }
+          >
+            {posts.map((post, postIdx) => ( 
+              <React.Fragment key={post._id}>
+                <Post key={post._id} post={post} postedBy={post.postedBy}/>
+                {postIdx === 2 && !fetchingReels && reels.length > 0 && (
+                  <Flex maxH={'300px'} maxW={"100%"} ml={6} my={5} cursor={'pointer'}>
+                    {reels.map((reel, idx) => (
+                      <Reel 
+                        key={reel._id} 
+                        video={reel} 
+                        postedBy={reel.postedBy} 
+                        idx={idx}
+                      />
+                    ))}
+                  </Flex>
+                )}
+              </React.Fragment>
+
+            ))}
+          </InfiniteScroll>
+        )}
 
       </Box>
 
