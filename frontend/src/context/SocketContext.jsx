@@ -18,7 +18,9 @@ export const SocketContextProvider = ({ children }) => {
 
     // type http://localhost:5000 on development
     useEffect(() => {
-        const socket = io("sharex.us-east-1.elasticbeanstalk.com", {
+        const socket = io("ws://sharex.us-east-1.elasticbeanstalk.com", {
+            path: "/socket.io",
+            transports: ["websocket"],
             query: {
                 userId: user?._id
             }

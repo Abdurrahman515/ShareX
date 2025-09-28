@@ -17,7 +17,8 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
 app.use(cors({
-    origin: "https://d313oyzovamctv.cloudfront.net",
+    origin: ["http://localhost:3000", "https://d313oyzovamctv.cloudfront.net", "http://www.sharex.com.s3-website-us-east-1.amazonaws.com "],
+    methods: ["GET", "POST"],
     credentials: true
 }));
 
