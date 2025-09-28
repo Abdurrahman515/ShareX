@@ -41,14 +41,14 @@ const SearchPage = () => {
   const searchUsers = useCallback(() => {
     if(searchText.trim()){
       const result = users.filter(user => {
-        return user.username.includes(searchText);
+        return user.username.toLowerCase().includes(searchText.trim().toLowerCase());
       });
       
       setFoundedUsers(result);
       
       if(!result[0]){
         const result2 = users.filter(user => {
-          return user.name.toLowerCase().includes(searchText);
+          return user.name.toLowerCase().includes(searchText.trim().toLowerCase());
         })
         setFoundedUsers(result2);
       };
