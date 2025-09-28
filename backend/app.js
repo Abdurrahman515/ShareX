@@ -27,6 +27,9 @@ app.use("/api/posts", postRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api", notificationRoutes);
 app.use('/api/videos', videoRoutes);
+app.use('/health', (req, res) => {
+    return res.status(200);
+});
 
 // Reactive the bellow code to run the application on the same port:5000 && run the code: "npm start" from the root
 /*const __filename = fileURLToPath(import.meta.url);
