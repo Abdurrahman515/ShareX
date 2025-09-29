@@ -156,6 +156,19 @@ const HomePage = () => {
             </Box>
           </Flex>
         )}
+
+        {posts.length === 0 && reels.length > 0 && (
+          <Flex maxH={'300px'} maxW={"100%"} ml={6} my={5} cursor={'pointer'}>
+            {reels.map((reel, idx) => (
+              <Reel 
+                key={reel._id} 
+                video={reel} 
+                postedBy={reel.postedBy} 
+                idx={idx}
+              />
+            ))}
+          </Flex>
+        )}
         
         {posts.length > 0 && (
           <InfiniteScroll
