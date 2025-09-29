@@ -30,6 +30,15 @@ export default function UpdateProfilePage() {
 
   const fileRef = useRef(null);
 
+  const inputsToSend = {
+    name: inputs.name.trim(),
+    username: inputs.username.trim(),
+    email: inputs.email.trim(),
+    bio: inputs.bio.trim(),
+    password: inputs.password.trim(),
+    lang: inputs.lang,
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(updating) return;
@@ -40,7 +49,7 @@ export default function UpdateProfilePage() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({...inputs, profilePic: imgUrl})
+        body: JSON.stringify({...inputsToSend, profilePic: imgUrl})
       });
       
       const data = await res.json();
