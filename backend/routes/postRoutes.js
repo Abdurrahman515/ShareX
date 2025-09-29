@@ -5,9 +5,9 @@ import protectRoute from "../middlewares/protectRoute.js";
 const router = express.Router();
 
 router.get('/feed', protectRoute, getFeedPosts);
+router.post('/create', protectRoute, createPost); 
 router.get('/:id', getPost);
 router.get('/user/:username', getUserPosts);
-router.post('/create', protectRoute, createPost);
 router.post('/repost/:pid', protectRoute, repostPost);
 router.delete('/delete/:id', protectRoute, deletePost);
 router.put('/like/:id', protectRoute, likeUnlikePost);
