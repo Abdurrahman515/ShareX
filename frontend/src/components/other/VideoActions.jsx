@@ -342,7 +342,7 @@ const CommentSVG = ({ video }) => {
                 </Text>
             </Flex>
 
-            <Drawer.Root open={open} onOpenChange={(e) => setOpen(e.open)} placement={'bottom'} dir={lang === 'ar' ? "rtl" : "ltr"}>
+            <Drawer.Root open={open} onOpenChange={(e) => setOpen(e.open)} placement={{ base: 'top', md: 'bottom' }} dir={lang === 'ar' ? "rtl" : "ltr"}>
                 <Portal>
                     <Drawer.Backdrop />
                     <Drawer.Positioner>
@@ -378,7 +378,7 @@ const CommentSVG = ({ video }) => {
 
                                     <Divider />
                                     
-                                    <Box maxH={'200px'} overflowY={'auto'} px={5}>
+                                    <Box minH={'50px'} maxH={'200px'} overflowY={'auto'} px={5}>
                                         {video?.replies?.length > 0 && video?.replies.map((reply, idx) => (
                                             <Comment key={reply?._id} reply={reply} lastReply={idx === video?.replies?.length - 1} />
                                         ))}
