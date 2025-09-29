@@ -195,7 +195,7 @@ const HomePage = () => {
             {posts.map((post, postIdx) => ( 
               <React.Fragment key={post._id}>
                 <Post key={post._id} post={post} postedBy={post.postedBy}/>
-                {(postIdx === 2 || postIdx === posts.length - 1) && !fetchingReels && reels.length > 0 && (
+                {(postIdx === 2 || (postIdx === posts.length - 1 && postIdx < 2)) && !fetchingReels && reels.length > 0 && (
                   <Flex maxH={'300px'} maxW={"100%"} ml={6} my={5} cursor={'pointer'}>
                     {reels.map((reel, idx) => (
                       <Reel 
