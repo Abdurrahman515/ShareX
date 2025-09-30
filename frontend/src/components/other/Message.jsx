@@ -16,6 +16,7 @@ import { downloadBase64AsFile } from '@/utils/downloadBase64AsFile';
 import AudioControls from './AudioControls';
 import { langAtom } from '@/atoms/langAtom';
 import { ar } from 'date-fns/locale';
+import MessageText from './MessageText';
 
 const Message = ({ ownMessage, message, isLastMessage, messagesEndRef }) => {
     const currentUser = useRecoilValue(userAtom);
@@ -94,16 +95,9 @@ const Message = ({ ownMessage, message, isLastMessage, messagesEndRef }) => {
                 {message.text && !message.img && !message.video?.videoUrl && (
                     <Flex maxW={'350px'} bg={'green.500'} p={1} borderRadius={'md'}>
                         <Flex flexDir={'column'}>
-                            <Text 
-                                p={0} 
-                                m={0}
-                                whiteSpace={'pre-wrap'}
-                                overflowWrap={'anywhere'}
-                                wordBreak={"break-word"}
-                                hyphens={'auto'}
-                            >
-                                {message.text}
-                            </Text>
+                            
+                            <MessageText text={message.text} />
+
                             <Flex alignSelf={'flex-end'}>
                                 <Box as="span" display="block" fontSize="xs" p={0} m={0} color={colorMode == "dark" ? "gray.300" : "gray.700"}>
                                     {sendingTime}
@@ -139,16 +133,8 @@ const Message = ({ ownMessage, message, isLastMessage, messagesEndRef }) => {
 
                         <Flex justifyContent={'space-between'} maxW={{base: '80%', md: '350px'}} w={'100%'} minW={0} bg={'green.500'} p={1} borderRadius={'md'} alignSelf={'flex-end'}>
                             <Flex flexDir={'column'} maxW={'100%'} w={'100%'} minW={0}>
-                                <Text 
-                                    p={0} 
-                                    m={0}
-                                    whiteSpace={'pre-wrap'}
-                                    overflowWrap={'anywhere'}
-                                    wordBreak={"break-word"}
-                                    hyphens={'auto'}
-                                >
-                                    {message.text}
-                                </Text>
+                                
+                                <MessageText text={message.text} />
                                 
                                 <Flex alignSelf={'flex-end'}>
                                     <Box as="span" display="block" fontSize="xs" p={0} m={0} color={colorMode == "dark" ? "gray.300" : "gray.700"}>
@@ -291,16 +277,8 @@ const Message = ({ ownMessage, message, isLastMessage, messagesEndRef }) => {
                             mt={1}
                         >
                             <Flex flexDir={'column'} w={'100%'}>
-                                <Text 
-                                    p={0} 
-                                    m={0}
-                                    whiteSpace={'pre-wrap'}
-                                    overflowWrap={'anywhere'}
-                                    wordBreak={"break-word"}
-                                    hyphens={'auto'}
-                                >
-                                    {message.text}
-                                </Text>
+                                
+                                <MessageText text={message.text} />
                             
                                 <Flex alignSelf={'flex-end'} w={'100'}>
                                     <Box as="span" display="block" fontSize="xs" p={0} m={0} color={colorMode == "dark" ? "gray.300" : "gray.700"}>
@@ -425,16 +403,9 @@ const Message = ({ ownMessage, message, isLastMessage, messagesEndRef }) => {
 
                 {message.text && !message.img && !message.video?.videoUrl && (
                     <Flex flexDir={'column'} maxW={'350px'} bg={'gray.400'} p={1} borderRadius={'md'}>
-                            <Text 
-                                color={'black'} 
-                                pr={1}
-                                whiteSpace={'pre-wrap'}
-                                overflowWrap={'anywhere'}
-                                wordBreak={"break-word"}
-                                hyphens={'auto'}
-                            >
-                                {message.text}
-                            </Text>
+                            
+                            <MessageText text={message.text} color={'black'} />
+
                             <Box as="span" display="block" fontSize="xs" p={0} m={0} color="gray.700">
                                 {sendingTime}
                             </Box>
@@ -455,16 +426,9 @@ const Message = ({ ownMessage, message, isLastMessage, messagesEndRef }) => {
                         />
 
                         <Flex flexDir={'column'} maxW={{base: '80%', md: '350px'}} bg={'gray.400'} p={1} borderRadius={'md'} alignSelf={'flex-start'} w={'100%'}>
-                            <Text 
-                                color={'black'} 
-                                pr={1}
-                                whiteSpace={'pre-wrap'}
-                                overflowWrap={'anywhere'}
-                                wordBreak={"break-word"}
-                                hyphens={'auto'}
-                            >
-                                {message.text}
-                            </Text>
+                            
+                            <MessageText text={message.text} color={'black'} />
+
                             <Box as="span" display="block" fontSize="xs" p={0} m={0} color="gray.700">
                                 {sendingTime}
                             </Box>
@@ -580,16 +544,9 @@ const Message = ({ ownMessage, message, isLastMessage, messagesEndRef }) => {
                         </Box>
 
                         <Flex flexDir={'column'} maxW={{base: '80%', md: '350px'}} w={'100%'} bg={'gray.400'} p={1} borderRadius={'md'} alignSelf={'flex-start'} mt={1}>
-                            <Text 
-                                color={'black'} 
-                                pr={1}
-                                whiteSpace={'pre-wrap'}
-                                overflowWrap={'anywhere'}
-                                wordBreak={"break-word"}
-                                hyphens={'auto'}
-                            >
-                                {message.text}
-                            </Text>
+                            
+                            <MessageText text={message.text} color={'black'} />
+
                             <Box as="span" display="block" fontSize="xs" p={0} m={0} color="gray.700">
                                 {sendingTime}
                             </Box>

@@ -46,3 +46,12 @@ textarea::-webkit-resizer {
 textarea::-moz-resizer {
   display: none;
 }
+
+.chat-message a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+.chat-message a:hover {
+  color: #1e69af;
+}
