@@ -225,7 +225,7 @@ const ChatPage = () => {
       if(!searchText.trim()) return showErrorToast(lang === 'ar' ? "اكتب اسم مستعار للبحث!" : 'Type a username to search!');
 
       const isConversationExist = conversations.map((conversation) => {
-        if(conversation.participants[0].username === searchText){
+        if(conversation.participants[0].username === searchText.trim()){
           const user = conversation.participants[0];
           setSelectedConversation({
             _id: conversation._id,
@@ -244,7 +244,7 @@ const ChatPage = () => {
         return;
       };
 
-      const res = await fetch(`/api/users/profile/${searchText}?lang=${lang}`);
+      const res = await fetch(`/api/users/profile/${searchText.trim()}?lang=${lang}`);
       const data = await res.json();
 
       if(data.error) return showErrorToast(data.error);
