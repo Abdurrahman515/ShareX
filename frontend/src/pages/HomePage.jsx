@@ -158,7 +158,7 @@ const HomePage = () => {
         )}
 
         {posts.length === 0 && reels.length > 0 && (
-          <Flex maxH={'300px'} maxW={"100%"} ml={6} my={5} cursor={'pointer'}>
+          <Flex maxH={'300px'} maxW={"100%"} ml={6} my={5} cursor={'pointer'} scrollSnapType={"none"}>
             {reels.map((reel, idx) => (
               <Reel 
                 key={reel._id} 
