@@ -157,7 +157,7 @@ const HomePage = () => {
           </Flex>
         )}
 
-        {posts.length === 0 && reels.length > 0 && (
+        {posts.length === 0 && reels.length > 0 && !loading && !fetchingReels && (
           <Flex maxH={'300px'} maxW={"100%"} ml={6} my={5} cursor={'pointer'} scrollSnapType={"none"}>
             {reels.map((reel, idx) => (
               <Reel 
