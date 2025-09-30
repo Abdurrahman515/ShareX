@@ -149,7 +149,7 @@ const HomePage = () => {
           </Flex>
         )}
 
-        {posts.length === 0 && (
+        {posts.length === 0 && !loading && (
           <Flex justify={'center'} py={6}>
             <Box fontWeight={'bold'} color={'gray.500'}>
               {lang === 'ar' ? "لا يوجد أي منشور!" : "There are no post!"}
