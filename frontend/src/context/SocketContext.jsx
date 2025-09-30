@@ -16,9 +16,12 @@ export const SocketContextProvider = ({ children }) => {
 
     const user = useRecoilValue(userAtom);
 
-    // type http://localhost:5000 on development
+    
     useEffect(() => {
-        const socket = io("wss://d313oyzovamctv.cloudfront.net", {
+        // eslint-disable-next-line
+        const socketUrl = process.env.NODE_ENV === 'development' ? "http://localhost:5000" : "wss://d313oyzovamctv.cloudfront.net";
+        
+        const socket = io(socketUrl, {
             path: "/socket.io",
             transports: ["websocket"],
             query: {
