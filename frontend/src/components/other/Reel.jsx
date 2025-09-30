@@ -60,6 +60,7 @@ const Reel = ({ video, postedBy, idx }) => {
             h={window.location.pathname === '/' ? "290px" : '400px'}
             border={'0.2px solid #2e2e2e'}
             position={window.location.pathname !== '/' && 'relative'}
+            scrollSnapType={'none'}
             onMouseEnter={() => {
                 videoRef.current?.play();
             }}
@@ -77,7 +78,8 @@ const Reel = ({ video, postedBy, idx }) => {
                 style={{
                     borderRadius: '5px',
                     height: '100%',
-                    objectFit: 'contain'
+                    objectFit: 'contain',
+                    scrollSnapAlign: 'none',
                 }}
                 onClick={() => {
                     navigate(`/reels/reel/${video?._id}`);
