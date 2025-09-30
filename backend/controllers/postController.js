@@ -9,8 +9,8 @@ const createPost = async (req, res) => {
         const { postedBy, text, img, video } = req.body;
 		const lang = req.query.lang || navigator.language.slice(0, 2);
 
-        if (!postedBy || !text) {
-			return res.status(400).json({ error: lang === 'ar' ? "حقلا النص والناشر مطلوبان!" : "Postedby and text fields are required" });
+        if (!postedBy || (!text && !video.videoUrl && !img)) {
+			return res.status(400).json({ error: lang === 'ar' ? "لا يمكنك إنشاء منشور فارغ!" : "You can't create an empty post!" });
 		};
 
         const user = await User.findById(postedBy);
