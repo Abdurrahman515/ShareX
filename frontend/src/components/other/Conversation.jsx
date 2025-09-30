@@ -135,7 +135,7 @@ const Conversation = ({ conversation, isOnline, isWriting, isRecording }) => {
                 lastMessage.isVideo && !lastMessage.text ? "فيديو" 
                 : lastMessage.isAudio ? "رسالة صوتية" 
                 : !lastMessage.text && !conversation.mock && lastMessage.sender && !lastMessage.isVideo && !lastMessage.isAudio ? "صورة" 
-                : (lastMessage.text.length > 18 ? lastMessage.text.substring(0, 18) + '...' 
+                : (lastMessage.text.length > 15 ? lastMessage.text.substring(0, 15) + '...' 
                 : lastMessage.text)
               )}
           </Text>
