@@ -13,18 +13,20 @@ import { IoPersonCircleOutline } from 'react-icons/io5';
 import { IoMdSettings } from 'react-icons/io';
 import useShowToast from '@/hooks/useShowToast';
 import { unSeenMessagesAtom } from '@/atoms/messagesAtom';
-import { outOfChatPageAtom } from '@/atoms/placeAtom';
+import { isClosedAtom, outOfChatPageAtom } from '@/atoms/placeAtom';
 import { MdPersonSearch } from 'react-icons/md';
 import { langAtom } from '@/atoms/langAtom';
 
 const Header = () => {
   const user = useRecoilValue(userAtom);
   const lang = useRecoilValue(langAtom);
+  const isClosed = useRecoilValue(isClosedAtom);
   const setAuthScreen = useSetRecoilState(authScreenAtom);
   const unSeenMessages = useRecoilValue(unSeenMessagesAtom);
   const outOfChatPage = useRecoilValue(outOfChatPageAtom);
 
   const [ open, setOpen ] = useState(false);
+  const [ open2, setOpen2 ] = useState(false);
   
   const { showSuccessToast } = useShowToast();
   const { logout, loading } = useLogout();
@@ -39,6 +41,18 @@ const Header = () => {
       localStorage.setItem('first-entry', 'done');
     }
   }, []);
+
+  const handleOpenPop2 = useCallback(() => {
+    if(localStorage.getItem('first-entry-chat-2')) return; 
+    if(!isClosed) return;
+    
+    setOpen2(true);
+    localStorage.setItem('first-entry-chat-2', 'done');
+  }, [isClosed]);
+
+  useEffect(() => {
+    handleOpenPop2();
+  }, [handleOpenPop2]);
 
   useEffect(() => {
     handleOpenPop();
@@ -138,9 +152,40 @@ const Header = () => {
       )}
 
       {user && (
-        <Link to={'/search'}>
-          <MdPersonSearch size={32}/>
-        </Link>
+        <Popover.Root open={open2} onOpenChange={(e) => setOpen2(e.open)}>
+          <Popover.Trigger asChild onClick={(e) => {e.preventDefault();}}>
+            <Link to={'/search'}>
+              <MdPersonSearch size={32}/>
+            </Link>
+          </Popover.Trigger>
+          <Portal>
+            <Popover.Positioner>
+              <Popover.Content>
+                <Popover.Arrow />
+                <Popover.Body>
+                  <Flex>
+                    <Text fontSize={'md'}>
+                      {lang === 'ar' ? "إن لم تكن متأكدا من الاسم يمكنك البحث من هنا بكتابة الجزء الذي تتذكره، سواء من الاسم الكامل او المستعار" 
+                      : "or if you're not sure about the name, you can search here by typing the part you remember, whether from the full name or username"}
+                    </Text>
+                    <Button 
+                      variant={'outline'} 
+                      mt={3} 
+                      size={'sm'} 
+                      alignSelf={'flex-end'} 
+                      colorPalette={'green'} 
+                      onClick={() => {
+                        setOpen2(false);
+                      }}
+                    >
+                      {lang === 'ar' ? "حسنا" : "ok"}
+                    </Button>
+                  </Flex>
+                </Popover.Body>
+              </Popover.Content>
+            </Popover.Positioner>
+          </Portal>
+        </Popover.Root>
       )}
 
       {user && (

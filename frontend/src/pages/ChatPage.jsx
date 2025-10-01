@@ -6,12 +6,12 @@ import { useColorModeValue } from '@/components/ui/color-mode';
 import { useSocket } from '@/context/SocketContext';
 import useShowToast from '@/hooks/useShowToast';
 import { SearchIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, Input, Skeleton, SkeletonCircle, Text } from '@chakra-ui/react';
-import React, { useEffect, useRef, useState } from 'react';
+import { Box, Button, Flex, Input, Popover, Portal, Skeleton, SkeletonCircle, Text } from '@chakra-ui/react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { GiConversation } from 'react-icons/gi';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { Toaster } from '@/components/ui/toaster';
-import { navigatedAtom, outOfChatPageAtom } from '@/atoms/placeAtom';
+import { isClosedAtom, navigatedAtom, outOfChatPageAtom } from '@/atoms/placeAtom';
 import { langAtom } from '@/atoms/langAtom';
 
 const ChatPage = () => {
@@ -21,6 +21,8 @@ const ChatPage = () => {
   const [ done, setDone ] = useState(false);
   const [ writingUserId, setWritingUserId ] = useState("");
   const [ recordingUserId, setRecordingUserId ] = useState("");
+  const [ open, setOpen ] = useState(false);
+  const [ isOpened, setIsOpened ] = useState(false);
 
   const conversationsEndRef = useRef(null);
   
@@ -31,9 +33,32 @@ const ChatPage = () => {
   const lang = useRecoilValue(langAtom);
   const setMessages = useSetRecoilState(messagesAtom);
   const setOutOfChatPage = useSetRecoilState(outOfChatPageAtom);
+  const setIsClosed = useSetRecoilState(isClosedAtom);
   
   const { showErrorToast } = useShowToast();
   const { socket, onlineUsers } = useSocket();
+
+  const handleOpenPop = useCallback(() => {
+    if(localStorage.getItem('first-entry-chat')) return;
+
+    setOpen(true);
+    localStorage.setItem('first-entry-chat', 'done');
+  } ,[]);
+
+  useEffect(() => {
+    handleOpenPop();
+  }, [handleOpenPop]);
+
+  useEffect(() => {
+    if(open){
+      setIsOpened(true);
+    };
+
+    if(isOpened && !open){
+      setIsClosed(true);
+      setIsOpened(false);
+    };
+  }, [isOpened, open, setIsClosed]);
 
   useEffect(() => {
     setOutOfChatPage(false);
@@ -301,16 +326,55 @@ const ChatPage = () => {
             </Text>
 
             <form onSubmit={handleSearchConversation}>
-                <Flex alignItems={'center'} gap={2}>
-                    <Input 
-                      placeholder={lang === 'ar' ? "ابحث عن مستخدم" : 'Search for a user'} 
-                      value={searchText} 
-                      onChange={(e) => setSearchText(e.target.value)}
-                    />
-                    <Button variant={"ghost"} type='submit' loading={searching} onClick={handleSearchConversation}>
-                        <SearchIcon data-testid={'search-icon'} />
-                    </Button>
+              <Flex alignItems={'center'} gap={2}>
+
+                <Flex direction={'column'} gap={0}>
+                  <Input 
+                    placeholder={lang === 'ar' ? "ابحث عن مستخدم" : 'Search for a user'} 
+                    value={searchText} 
+                    onChange={(e) => setSearchText(e.target.value)}
+                  />
+
+                  <Popover.Root open={open} onOpenChange={(e) => setOpen(e.open)}>
+                    <Popover.Trigger asChild onClick={(e) => {e.preventDefault();}}>
+                      <Box h={0} w={'100%'} p={0} m={0} />
+                    </Popover.Trigger>
+                    <Portal>
+                      <Popover.Positioner>
+                        <Popover.Content>
+                          <Popover.Arrow />
+                          <Popover.Body>
+                            <Flex direction={'column'}>
+                              <Text fontSize={'md'}>
+                                {lang === 'ar' ? "ابحث باستخدام الاسم المستعار لإضافة محادثة جديدة" 
+                                : 'Search by username to add a new conversation'}
+                              </Text>
+                              <Button 
+                                variant={'outline'} 
+                                mt={3} 
+                                size={'sm'} 
+                                alignSelf={'flex-end'} 
+                                colorPalette={'green'} 
+                                onClick={() => {
+                                  setOpen(false);
+                                  setIsClosed(true);
+                                }}
+                              >
+                                {lang === 'ar' ? "حسنا" : "ok"}
+                              </Button>
+                            </Flex>
+                          </Popover.Body>
+                        </Popover.Content>
+                      </Popover.Positioner>
+                    </Portal>
+                  </Popover.Root>
                 </Flex>
+
+
+                <Button variant={"ghost"} type='submit' loading={searching} onClick={handleSearchConversation}>
+                    <SearchIcon data-testid={'search-icon'} />
+                </Button>
+              </Flex>
             </form>
 
             {loading &&

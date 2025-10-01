@@ -22,3 +22,8 @@ export const outOfReelsPageAtom = atom({
     key: "outOfReelsPageAtom",
     default: true
 });
+
+export const isClosedAtom = atom({
+    key: "isClosedAtom",
+    default: false
+});
