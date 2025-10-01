@@ -82,13 +82,18 @@ https://d313oyzovamctv.cloudfront.net
     API_KEY=your_cloud_api_key
     API_SECRET=your_cloud_api_secret
 
-7. ان كنت تريد تشغيل ملفات الاختبار لا تنسى اضافة الملف الاتي مع نفس المتغيرات اعلاه:
+7. اذهب الى الملف التالي:
+    /frontend/app.jsx => line: 78
+    وعدل المتغير التالي الى قيمته لديك:
+    publicVapidKey
+
+8. ان كنت تريد تشغيل ملفات الاختبار لا تنسى اضافة الملف الاتي مع نفس المتغيرات اعلاه:
     backend/.env.test
 
-8. قم بتشغيل الخادم من الجذر عن الطريق الامر:
+9. قم بتشغيل الخادم من الجذر عن الطريق الامر:
     npm start
 
-9. افتح متصفحك على العنوان:
+10. افتح متصفحك على العنوان:
     http://localhost:5000
 
 
@@ -176,6 +181,10 @@ Follow these steps to run the project on your local machine:
     CLOUD_NAME=your_cloud_name
     API_KEY=your_cloud_api_key
     API_SECRET=your_cloud_api_secret
+
+7. navigate to the following file:
+    /frontend/app.jsx => line: 78
+    and adjusting the value of "publicVapidKey" as needed
 
 7. If you want to run test files, don’t forget to create the following file with the same variables as above:
     backend/.env.test
