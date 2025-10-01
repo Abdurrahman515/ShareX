@@ -19,7 +19,7 @@ export const SocketContextProvider = ({ children }) => {
     
     useEffect(() => {
         // eslint-disable-next-line
-        const socketUrl = process.env.NODE_ENV === 'development' ? "http://localhost:5000" : "wss://d313oyzovamctv.cloudfront.net";
+        const socketUrl = process.env.NODE_ENV !== 'production' ? "http://localhost:5000" : "wss://d313oyzovamctv.cloudfront.net";
         
         const socket = io(socketUrl, {
             path: "/socket.io",

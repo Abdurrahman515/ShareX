@@ -35,9 +35,9 @@ scroll down if you want to see the English version.
 
 لتسجيل مقطع صوتي نقرة واحدة للتشغيل والاخرى للإيقاف، لست بحاجة الى الضغط مطولا على علامة الميكروفون
 
-بدء دردشة مباشرة من أي منشور عبر قائمة الثلاث نقاط → "دردشة".
+بدء دردشة مباشرة من أي منشور/مقطع فيديو قصير/صفحة شخصية عبر قائمة الثلاث نقاط → "دردشة".
 
-نسخ رابط أي منشور أو مقطع قصير عبر قائمة الثلاث نقاط → "نسخ الرابط".
+نسخ رابط أي منشور/مقطع فيديو قصير/صفحة شخصية أو مقطع قصير عبر قائمة الثلاث نقاط → "نسخ الرابط".
 
 إعدادات مرنة: تغيير الوضع، اللغة، أو تجميد الحساب مؤقتًا.
 
@@ -48,6 +48,20 @@ scroll down if you want to see the English version.
 هذه مجرد لمحة عن أبرز الخصائص.
 اكتشف المزيد بنفسك عند استخدامك للموقع!
 
+🛠️ الإعداد محليًا
+اتبع الخطوات التالية لتشغيل المشروع على جهازك المحلي:
+
+1. قم بتحميل الكود على جهازك.
+2. تأكد من تنزيل الادوات البرمجية الازمة مثل محرر الاكواد وغيره
+3. افتح مجلد المشروع الاساسي - ليس اي مجلد فرعي - و افتح الطرفية - Terminal - 
+4. قم بتشغيل امر البناء من الجذر لتنزيل الحزم المطلوبة:
+    npm run build
+5. قم بالذهاب الى الملف التالي والغي التعليق عن مجموعة السطور الموجودة اخر الملف:
+    backend/app.js
+6. قم بتشغيل الخادم من الجذر عن الطريق الامر:
+    npm start
+7. افتح متصفحك على العنوان:
+    http://localhost:5000
 
 
 
@@ -88,9 +102,9 @@ Add users by searching for their username in the chat section.
 
 To record an audio clip, tap once to start and tap again to stop — no need to press and hold the microphone icon.
 
-Start a conversation directly from any post via the three-dot menu → Chat.
+Start a conversation directly from any post/reel/profile page via the three-dot menu → Chat.
 
-Easy Sharing: Copy links to posts or Reels using the three-dot menu → Copy Link.
+Easy Sharing: Copy links to posts or Reels or profile pages using the three-dot menu → Copy Link.
 
 Flexible Settings: Switch display modes, change languages, or freeze your account temporarily.
 
@@ -99,3 +113,19 @@ Instant Notifications: Receive real-time alerts when new messages arrive.
 📝 Notes
 
 This README covers the main features—there’s plenty more waiting for you to explore!
+
+🛠️ Local Setup
+
+Follow these steps to run the project on your local machine:
+
+1. Download the code to your device.
+2. Ensure you have the necessary tools installed, such as a code editor.
+3. Open the main project folder (not any subfolder) and launch the terminal.
+4. Run the build command from the root to install required packages:
+    npm run build
+5. Navigate to the following file and uncomment the lines at the end of the file:
+    backend/app.js
+6. Start the server from the root using the command:
+    npm start
+7. Open your browser and go to:
+    http://localhost:5000
