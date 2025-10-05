@@ -152,40 +152,44 @@ const Header = () => {
       )}
 
       {user && (
-        <Popover.Root open={open2} onOpenChange={(e) => setOpen2(e.open)}>
-          <Popover.Trigger asChild onClick={(e) => {e.preventDefault();}}>
-            <Link to={'/search'}>
-              <MdPersonSearch size={32}/>
-            </Link>
-          </Popover.Trigger>
-          <Portal>
-            <Popover.Positioner>
-              <Popover.Content>
-                <Popover.Arrow />
-                <Popover.Body>
-                  <Flex>
-                    <Text fontSize={'md'}>
-                      {lang === 'ar' ? "إن لم تكن متأكدا من الاسم يمكنك البحث من هنا بكتابة الجزء الذي تتذكره، سواء من الاسم الكامل او المستعار" 
-                      : "or if you're not sure about the name, you can search here by typing the part you remember, whether from the full name or username"}
-                    </Text>
-                    <Button 
-                      variant={'outline'} 
-                      mt={3} 
-                      size={'sm'} 
-                      alignSelf={'flex-end'} 
-                      colorPalette={'green'} 
-                      onClick={() => {
-                        setOpen2(false);
-                      }}
-                    >
-                      {lang === 'ar' ? "حسنا" : "ok"}
-                    </Button>
-                  </Flex>
-                </Popover.Body>
-              </Popover.Content>
-            </Popover.Positioner>
-          </Portal>
-        </Popover.Root>
+        <Flex direction={'column'} gap={0}>
+          <Link to={'/search'}>
+            <MdPersonSearch size={32}/>
+          </Link>
+
+          <Popover.Root open={open2} onOpenChange={(e) => setOpen2(e.open)}>
+            <Popover.Trigger asChild onClick={(e) => {e.preventDefault();}}>
+              <Box h={0} w={'100%'} p={0} m={0} />
+            </Popover.Trigger>
+            <Portal>
+              <Popover.Positioner>
+                <Popover.Content>
+                  <Popover.Arrow />
+                  <Popover.Body>
+                    <Flex>
+                      <Text fontSize={'md'}>
+                        {lang === 'ar' ? "إن لم تكن متأكدا من الاسم يمكنك البحث من هنا بكتابة الجزء الذي تتذكره، سواء من الاسم الكامل او المستعار" 
+                        : "or if you're not sure about the name, you can search here by typing the part you remember, whether from the full name or username"}
+                      </Text>
+                      <Button 
+                        variant={'outline'} 
+                        mt={3} 
+                        size={'sm'} 
+                        alignSelf={'flex-end'} 
+                        colorPalette={'green'} 
+                        onClick={() => {
+                          setOpen2(false);
+                        }}
+                      >
+                        {lang === 'ar' ? "حسنا" : "ok"}
+                      </Button>
+                    </Flex>
+                  </Popover.Body>
+                </Popover.Content>
+              </Popover.Positioner>
+            </Portal>
+          </Popover.Root>
+        </Flex>
       )}
 
       {user && (
