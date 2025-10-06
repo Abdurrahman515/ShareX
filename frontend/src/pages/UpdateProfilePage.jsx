@@ -31,11 +31,11 @@ export default function UpdateProfilePage() {
   const fileRef = useRef(null);
 
   const inputsToSend = {
-    name: inputs.name.trim(),
-    username: inputs.username.trim(),
-    email: inputs.email.trim(),
-    bio: inputs.bio.trim(),
-    password: inputs.password.trim(),
+    name: inputs.name?.trim(),
+    username: inputs.username?.trim(),
+    email: inputs.email?.trim(),
+    bio: inputs.bio?.trim(),
+    password: inputs.password?.trim(),
     lang: inputs.lang,
   }
 

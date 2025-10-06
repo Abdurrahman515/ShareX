@@ -1,11 +1,11 @@
 import { Server } from 'socket.io';
-import http from 'http';
-import express from 'express';
 import Message from '../models/messageModel.js';
 import Conversation from '../models/conversationModel.js';
 
 // hash map for keeping the online users in
 const userSocketMap = {} //userId: socketId
+
+let focusedUsers = [];
 
 export const getRecipientSocketId = (recipientId) => {
     return userSocketMap[recipientId];
@@ -61,6 +61,16 @@ export function initSocketServer(httpServer){
             } catch (error) {
                 console.log('Error in messageArrived event: ', error.message || error);
             }
+        });
+
+        socket.on("userFocused", ({ focusedUserId }) => {
+            if(!focusedUsers.includes(focusedUserId)) focusedUsers.push(focusedUserId);
+            io.emit("userIsFocused", { focusedUsers });
+        });
+
+        socket.on("userUnfocused", ({ unFocusedUserId }) => {
+            focusedUsers = focusedUsers.filter(id => id !== unFocusedUserId);
+            io.emit("userIsUnfocused", { focusedUsers });
         });
     
         socket.on('disconnect', () => {

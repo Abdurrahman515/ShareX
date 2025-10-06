@@ -25,4 +25,4 @@ export const messagesAtom = atom({
 export const unSeenMessagesAtom = atom({
     key: 'unSeenMessagesAtom',
     default: []
-})
+});

@@ -35,6 +35,7 @@ const MessageInput = ({ inputRef, messagesEndRef }) => {
   const [ isFullscreen, setIsFullscreen ] = useState(false);
   const [ hover, setHover ] = useState(true);
   const [ inputHeight, setInputHeight ] = useState('40px');
+  const [ focusedUsers, setFocusedUsers ] = useState([]);
 
   const imgRef = useRef(null);
   const videoRef = useRef(null);
@@ -99,6 +100,21 @@ const MessageInput = ({ inputRef, messagesEndRef }) => {
       socket.emit('userStoppedRecording', { recipientId: selectedConversation.userId });
     }
   } , [recording, currentUser._id, selectedConversation.userId, socket]);
+
+  useEffect(() => {
+    socket?.on("userIsFocused", ({ focusedUsers }) => {
+      setFocusedUsers(focusedUsers);
+    });
+
+    socket?.on("userIsUnfocused", ({ focusedUsers }) => {
+      setFocusedUsers(focusedUsers);
+    });
+
+    return () => {
+      socket?.off("userIsFocused");
+      socket?.off("userIsUnfocused");
+    }
+  }, [socket]);
 
   const handleSendMessage = async (e) => {
     if(e) e.preventDefault();
@@ -230,7 +246,7 @@ const MessageInput = ({ inputRef, messagesEndRef }) => {
 
         setLoading(false);
 
-        if(!onlineUsers.includes(selectedConversation.userId) || document.hasFocus()) {
+        if(!onlineUsers.includes(selectedConversation.userId) || !focusedUsers.includes(selectedConversation.userId)) {
           const res2 = await fetch(`/api/notification/send?lang=${lang}`, {
             method: 'POST',
             headers: {
@@ -346,7 +362,7 @@ const MessageInput = ({ inputRef, messagesEndRef }) => {
 
         setLoading(false);
 
-        if(!onlineUsers.includes(selectedConversation.userId) || document.hasFocus()) {
+        if(!onlineUsers.includes(selectedConversation.userId) || !focusedUsers.includes(selectedConversation.userId)) {
           const res2 = await fetch(`/api/notification/send?lang=${lang}`, {
             method: 'POST',
             headers: {
@@ -438,7 +454,7 @@ const MessageInput = ({ inputRef, messagesEndRef }) => {
   
         setLoading(false);
   
-        if(!onlineUsers.includes(selectedConversation.userId) || document.hasFocus()) {
+        if(!onlineUsers.includes(selectedConversation.userId) || !focusedUsers.includes(selectedConversation.userId)) {
           const res2 = await fetch(`/api/notification/send?lang=${lang}`, {
             method: 'POST',
             headers: {

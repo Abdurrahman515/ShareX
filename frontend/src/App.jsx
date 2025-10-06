@@ -63,6 +63,25 @@ const App = () => {
   }, [showErrorToast, showSuccessToast, lang]);
 
   useEffect(() => {
+    const handleFocus = () => {
+      socket?.emit("userFocused", { focusedUserId: user._id });
+    };
+
+    const handleBlur = () => {
+      socket?.emit("userUnfocused", { unFocusedUserId: user._id });
+    };
+
+    window.addEventListener("focus", handleFocus);
+
+    window.addEventListener("blur", handleBlur);
+
+    return () => {
+      removeEventListener("focus", handleFocus);
+      removeEventListener("blur", handleBlur);
+    };
+  }, [user._id, socket]);
+
+  useEffect(() => {
     function urlBase64ToUint8Array(base64String) {
       const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
       const base64 = (base64String + padding)
@@ -160,7 +179,10 @@ const App = () => {
                   userProfilePic: message.sender.profilePic,
                   mock: false,
                   isOpened: false
-                })
+                });
+                setUnSeenMessages(prev => {
+                  return prev.filter(m => m.conversationId !== message.conversationId);
+                });
               }
             }
           });
