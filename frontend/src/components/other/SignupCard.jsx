@@ -7,6 +7,7 @@ import { useState } from 'react';
 import userAtom from '@/atoms/userAtom';
 import useShowToast from '@/hooks/useShowToast';
 import { langAtom } from '@/atoms/langAtom';
+import validator from 'validator';
 
 export default function SignupCard() {
   const [ loading, setLoading ] = useState(false)
@@ -38,7 +39,13 @@ export default function SignupCard() {
       showErrorToast(lang === 'ar' ? "يرجى ملئ جميع الحقول!" : 'Please fill in all fields!')
       return;
     };
-    setLoading(true)
+    if(inputs.password.trim().length < 6){
+      return showErrorToast(lang === 'ar' ? "يجب أن تكون كلمة المرور 6 خانات على الأقل!" : 'Password must be at least 6 characters long!')
+    };
+    if(!validator.isEmail(inputs.email)){
+      return showErrorToast(lang === 'ar' ? "يرجى إدخال بريد إلكتروني صالح!" : 'Please enter a valid email!')
+    };
+    setLoading(true);
     try {
       // doesn't started with http://localhost:5000 because it's already wroten in target (at vite.config.js)
       const res = await fetch(`/api/users/signup`, {
