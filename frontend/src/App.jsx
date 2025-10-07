@@ -64,11 +64,11 @@ const App = () => {
 
   useEffect(() => {
     const handleFocus = () => {
-      socket?.emit("userFocused", { focusedUserId: user._id });
+      socket?.emit("userFocused", { focusedUserId: user?._id });
     };
 
     const handleBlur = () => {
-      socket?.emit("userUnfocused", { unFocusedUserId: user._id });
+      socket?.emit("userUnfocused", { unFocusedUserId: user?._id });
     };
 
     window.addEventListener("focus", handleFocus);
@@ -79,7 +79,7 @@ const App = () => {
       removeEventListener("focus", handleFocus);
       removeEventListener("blur", handleBlur);
     };
-  }, [user._id, socket]);
+  }, [user?._id, socket]);
 
   useEffect(() => {
     function urlBase64ToUint8Array(base64String) {
