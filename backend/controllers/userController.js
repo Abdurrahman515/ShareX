@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import generateTokenAndSetCookie from "../utils/helpers/generateTokenAndSetCookie.js";
 import mongoose from "mongoose";
 import Post from "../models/postModel.js";
+import validator from "validator";
 
 const getUserProfile = async (req, res) => {
 	// we will fetch user profile either with username or userId
@@ -82,6 +83,15 @@ const getSuggestedUsers = async (req, res) => {
 const signupUser = async (req, res) => {
     try {
         const { name, email, username, password, lang } = req.body;
+
+		if(!name || !email || !username || !password){
+			return res.status(400).json({ error: lang === 'ar' ? "يرجى ملئ جميع الحقول!" : "Please fill in all fields!" });
+		};
+
+		if(!validator.isEmail(email)){
+			return res.status(400).json({ error: lang === 'ar' ? "يرجى إدخال بريد إلكتروني صالح!" : "Please enter a valid email!" });
+		};
+
 		const user = await User.findOne({ $or: [ { email }, { username } ] });
 
 		if (user) {
