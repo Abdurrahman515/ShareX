@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, CloseButton, Flex, Image, Skeleton, SkeletonCircle, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, CloseButton, Dialog, Flex, Image, Portal, Skeleton, SkeletonCircle, Text } from '@chakra-ui/react'
 import React, { useEffect, useRef, useState } from 'react'
 import { useColorMode, useColorModeValue } from '../ui/color-mode'
 import Divider from './Divider'
@@ -14,10 +14,12 @@ import ThreeDotsLoading from './ThreeDotsLoading'
 import { navigatedAtom } from '@/atoms/placeAtom'
 import { langAtom } from '@/atoms/langAtom'
 import SpikerLoading from './SpikerLoading'
+import { useNavigate } from 'react-router-dom'
 
 const MessageContainer = ({ writingUserId, isOnline, recordingUserId }) => {
     const [ loading, setLoading ] = useState(true);
     const [ saving, setSaving ] = useState(false);
+    const [ open, setOpen ] = useState(false);
 
     const messagesEndRef = useRef(null);
     const inputRef = useRef(null);
@@ -33,6 +35,7 @@ const MessageContainer = ({ writingUserId, isOnline, recordingUserId }) => {
     const { socket } = useSocket();
 
     const { colorMode } = useColorMode();
+    const navigate = useNavigate();
 
     const handleSaveConversation = async () => {
         try {
@@ -195,12 +198,16 @@ const MessageContainer = ({ writingUserId, isOnline, recordingUserId }) => {
             {/* Message header */}
             <Flex alignItems={'center'} justifyContent={'space-between'}>
                 <Flex w={'full'} h={12} alignItems={'center'} gap={2}>
-                    <Avatar.Root size={'sm'}>
+                    <Avatar.Root 
+                        size={'sm'}
+                        onClick={() => {if(selectedConversation.userProfilePic) setOpen(true)}} 
+                        cursor={selectedConversation.userProfilePic && 'pointer'}
+                    >
                         <Avatar.Fallback name='' />
                         <Avatar.Image src={selectedConversation.userProfilePic} /> 
                     </Avatar.Root>
                     <Flex flexDir={'column'}>
-                        <Text display={'flex'} alignItems={'center'}>
+                        <Text display={'flex'} alignItems={'center'} onClick={() => navigate(`/${selectedConversation.username}`)} cursor={'pointer'}>
                             {selectedConversation.username} 
                             <Image 
                                 src='/verified.png' 
@@ -345,6 +352,38 @@ const MessageContainer = ({ writingUserId, isOnline, recordingUserId }) => {
             </Flex>
 
             <MessageInput inputRef={inputRef} messagesEndRef={messagesEndRef} />
+
+            <Dialog.Root size={'cover'} lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>
+                <Portal>
+                    <Dialog.Backdrop />
+                    <Dialog.Positioner>
+                        <Dialog.Content>
+                            <Dialog.Body pb={6}>
+                                <Flex
+                                    mt={5} 
+                                    w={'full'} 
+                                    position={'relative'} 
+                                    h={'100%'} 
+                                    justifyContent={'center'} 
+                                    alignItems={'center'}
+                                >
+                                    <Image 
+                                        src={selectedConversation?.userProfilePic} 
+                                        alt={selectedConversation?.username}
+                                        objectFit={'contain'} 
+                                        maxH={'70vh'} 
+                                        alignSelf={'center'} 
+                                        justifySelf={'center'}
+                                    />
+                                </Flex>
+                            </Dialog.Body>
+                            <Dialog.CloseTrigger asChild>
+                                <CloseButton size="sm" />
+                            </Dialog.CloseTrigger>
+                        </Dialog.Content>
+                    </Dialog.Positioner>
+                </Portal>
+            </Dialog.Root>
         </Flex>
   )
 }

@@ -1,5 +1,5 @@
-import { Avatar, Box, Button, Flex, Menu, Portal, Text, VStack } from '@chakra-ui/react';
-import React from 'react';
+import { Avatar, Box, Button, CloseButton, Dialog, Flex, Image, Menu, Portal, Text, VStack } from '@chakra-ui/react';
+import React, { useState } from 'react';
 import { BsFillChatQuoteFill } from 'react-icons/bs';
 import { CgMoreO } from 'react-icons/cg';
 import { LuCopy } from 'react-icons/lu';
@@ -18,6 +18,8 @@ const UserHeader = ({ user }) => {
     const lang = useRecoilValue(langAtom);
     const setNavigated = useSetRecoilState(navigatedAtom);
     const [ section, setSection ] = useRecoilState(sectionAtom);
+
+    const [ open, setOpen ] = useState(false);
 
     const { showSuccessToast } = useShowToast();
     const { following, handleFollowUnfollow, loading} = useFollowUnfollow(user);
@@ -43,7 +45,7 @@ const UserHeader = ({ user }) => {
                 <Text fontSize={"sm"}>{user.username}</Text>
             </Box>
             <Box>
-                <Avatar.Root size={{base: 'xl', md: '2xl'}}>
+                <Avatar.Root size={{base: 'xl', md: '2xl'}} onClick={() => {if(user.profilePic) setOpen(true)}} cursor={user.profilePic ? 'pointer' : 'default'}>
                     <Avatar.Fallback name={user.name} />
                     <Avatar.Image src={user.profilePic}/>
                 </Avatar.Root>
@@ -137,6 +139,38 @@ const UserHeader = ({ user }) => {
                 <Text fontWeight={'bold'}>{lang === 'ar' ? "الريلز" : "Reels"}</Text>
             </Flex>
         </Flex>
+
+        <Dialog.Root size={'cover'} lazyMount open={open} onOpenChange={(e) => setOpen(e.open)}>
+            <Portal>
+                <Dialog.Backdrop />
+                <Dialog.Positioner>
+                    <Dialog.Content>
+                        <Dialog.Body pb={6}>
+                            <Flex
+                                mt={5} 
+                                w={'full'} 
+                                position={'relative'} 
+                                h={'100%'} 
+                                justifyContent={'center'} 
+                                alignItems={'center'}
+                            >
+                                <Image 
+                                    src={user?.profilePic} 
+                                    alt={user?.name}
+                                    objectFit={'contain'} 
+                                    maxH={'70vh'} 
+                                    alignSelf={'center'} 
+                                    justifySelf={'center'}
+                                />
+                            </Flex>
+                        </Dialog.Body>
+                        <Dialog.CloseTrigger asChild>
+                            <CloseButton size="sm" />
+                        </Dialog.CloseTrigger>
+                    </Dialog.Content>
+                </Dialog.Positioner>
+            </Portal>
+        </Dialog.Root>
     </VStack>
   )
 }
