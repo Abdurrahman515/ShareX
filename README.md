@@ -21,7 +21,7 @@
 
 ---
 
-### 👨‍💻 المطور
+### المطور
 
 **الاسم:** عبدالرحمن قربان بارودي  
 **الدور:** المطور الوحيد والناشر للكود
@@ -37,10 +37,10 @@
 
 ## ✨ ما الذي يمكنك فعله؟
 
-- 📝 إنشاء منشورات جديدة.  
-- 💬 التعليق على منشورات الآخرين والإعجاب بها.  
-- 👥 متابعة المستخدمين المفضلين لديك.  
-- 🖊️ تعديل ملفك الشخصي (الصورة والمعلومات).
+-  إنشاء منشورات جديدة.  
+-  التعليق على منشورات الآخرين والإعجاب بها.  
+-  متابعة المستخدمين المفضلين لديك.  
+-  تعديل ملفك الشخصي (الصورة والمعلومات).
 
 ---
 
@@ -80,23 +80,23 @@
     ```bash
         npm run build
     ```
-5. قم بالذهاب الى الملف التالي والغي التعليق عن مجموعة السطور الموجودة اخر الملف:
+5. قم بالذهاب الى الملف التالي والغي التعليق عن مجموعة السطور الموجودة اخر الملف:<br/>
     backend/app.js
 
-6. قم بإنشاء الملف الاتي:
+6. قم بإنشاء الملف الاتي:<br/>
     backend/.env
 
-   وضع فيه السطور الاتية مع تعديل القيم حسب الحاجة:
-    PORT=5000
-    MONGO_URI=your_mongo_db_connection_string
-    JWT_SECRET=your_jwt_secret_key
-    VAPID_PUBLIC_KEY=your_vapid_public_key
-    VAPID_PRIVATE_KEY=your_vapid_private_key
-    CLOUD_NAME=your_cloud_name
-    API_KEY=your_cloud_api_key
-    API_SECRET=your_cloud_api_secret
+   وضع فيه السطور الاتية مع تعديل القيم حسب الحاجة:<br/>
+    PORT=5000<br/>
+    MONGO_URI=your_mongo_db_connection_string<br/>
+    JWT_SECRET=your_jwt_secret_key<br/>
+    VAPID_PUBLIC_KEY=your_vapid_public_key<br/>
+    VAPID_PRIVATE_KEY=your_vapid_private_key<br/>
+    CLOUD_NAME=your_cloud_name<br/>
+    API_KEY=your_cloud_api_key<br/>
+    API_SECRET=your_cloud_api_secret<br/>
 
-7. ان كنت تريد تشغيل ملفات الاختبار لا تنسى اضافة الملف الاتي مع نفس المتغيرات اعلاه:
+7. ان كنت تريد تشغيل ملفات الاختبار لا تنسى اضافة الملف الاتي مع نفس المتغيرات اعلاه:<br/>
     backend/.env.test
 
 8. قم بتشغيل الخادم من الجذر عن الطريق الامر:
@@ -104,109 +104,140 @@
     npm start
     ```
 
-9. افتح متصفحك على العنوان:
+9. افتح متصفحك على العنوان:<br/>
     http://localhost:5000
 
 </div>
 
+---
+---
 
-🟢 Social Networking Platform
+Welcome to our social networking platform!  
+Built with simplicity and ease of use in mind, it provides everything you need to **connect**, **share**, and **engage** with others.
 
-Welcome to our social networking platform!
-Built with simplicity and ease of use in mind, it provides everything you need to connect, share, and engage with others.
+---
 
-‼️‼️Live Site Link (Hosted Online):
-https://d313oyzovamctv.cloudfront.net
-‼️we apologize for the performance issues caused by the free-tier database plan currently in use.
+### 🌐Live Demo:
 
-‼️Local Setup Instructions are provided below after the overview.
+🔗 **[https://d313oyzovamctv.cloudfront.net](https://d313oyzovamctv.cloudfront.net)**<br/>
 
-‼️ Sole Developer: Abdulrahman Kurban Baroudi - Code Publisher
+⚠️ we apologize for the performance issues caused by the free-tier database plan currently in use.
 
-🔑 Getting Started
+---
 
-Sign Up: Create a new account in just a few steps.
+### Developer
 
-Log In: Access your account if you already have one.
+**Name:** Abdurrahman Kurban Baroudi
+**Role:** Sole developer and code publisher
 
-✨ Core Features
+---
 
-Create Content: Share posts and short videos (Reels).
+## 🔑 Getting Started
 
-Engage with Others: Like and comment on posts.
+- **Sign Up:** Create a new account in just a few steps.  
+- **Log In:** Access your account if you already have one.
 
-Follow Users: Stay updated with people you care about.
+---
 
-Personalize Your Profile: Update your picture and personal information.
+## ✨ Core Features
 
-🚀 Unique Highlights
+- **Create Content:** Share posts and short videos (Reels).  
+- **Engage with Others:** Like and comment on posts.  
+- **Follow Users:** Stay updated with people you care about.  
+- **Personalize Your Profile:** Update your picture and personal information.
 
-Clean UI: Simple and user-friendly interface.
+---
 
-Display Mode Toggle: Instantly switch between modes by clicking the logo in the navigation bar.
+## 🚀 Unique Highlights
 
-Quick Post Creation: Use the ➕ button at the bottom of the screen to create posts or Reels.
+- **Clean UI:** Simple and user-friendly interface.  
+- **Display Mode Toggle:** Instantly switch between modes by clicking the logo in the navigation bar.  
+- **Quick Post Creation:** Use the ➕ button at the bottom of the screen to create posts or Reels.  
+- **Smart Search:** Find users even if you only remember part of their name or username.
 
-Smart Search: Find users even if you only remember part of their name or username.
+---
 
-Integrated Chat:
+### 💬 Integrated Chat
 
-- Add users by searching for their username in the chat section.
+- Add users by searching for their username in the chat section.  
+- To record an audio clip, tap once to start and tap again to stop — no need to press and hold the microphone icon.  
+- Start a conversation directly from any post, reel, or profile page via the three-dot menu → **Chat**.  
 
-- To record an audio clip, tap once to start and tap again to stop — no need to press and hold the microphone icon.
+---
 
-- Start a conversation directly from any post/reel/profile page via the three-dot menu → Chat.
+### 🔗 Easy Sharing
 
-Easy Sharing: Copy links to posts or Reels or profile pages using the three-dot menu → Copy Link.
+- Copy links to posts, Reels, or profile pages using the three-dot menu → **Copy Link**.
 
-Easy Download: 
+---
 
-- Download any Reel from the Reels page via the three-dot menu → Download.
+### ⬇️ Easy Download
 
-- Download any image/video from posts or messages by clicking the download icon located at the top corner of each video/image.
+- Download any Reel from the Reels page via the three-dot menu → **Download**.  
+- Download any image/video from posts or messages by clicking the download icon located at the top corner of each video/image.  
 
-Flexible Settings: Switch display modes, change languages, or freeze your account temporarily.
+---
 
-Instant Notifications: Receive real-time alerts when new messages arrive.
+### ⚙️ Flexible Settings
 
-📝 Notes
+- Switch display modes, change languages, or freeze your account temporarily.  
 
-This README covers the main features—there’s plenty more waiting for you to explore!
+---
 
-🛠️ Local Setup
+### 🔔 Instant Notifications
+
+- Receive real-time alerts when new messages arrive. 
+
+---
+
+## 📝 Notes
+
+This README covers the main features — there’s plenty more waiting for you to explore! 
+
+---
+
+## 🛠️ Local Setup
 
 Follow these steps to run the project on your local machine:
 
-1. Download the code to your device.
+1. Download the code to your device.<br/>
+    ```bash
+        git clone https://github.com/Abdurrahman515/ShareX
+    ```
 
 2. Ensure you have the necessary tools installed, such as a code editor.
 
 3. Open the main project folder (not any subfolder) and launch the terminal.
 
-4. Run the build command from the root to install required packages:
-    npm run build
+4. Run the build command from the root to install required packages:<br/>
+    ```bash
+        npm run build
+    ```
 
-5. Navigate to the following file and uncomment the lines at the end of the file:
+5. Navigate to the following file and uncomment the lines at the end of the file:<br/>
     backend/app.js
 
-6. Create the following file:
+6. Create the following file:<br/>
     backend/.env
 
-   Add the following lines, adjusting values as needed:
-    PORT=5000
-    MONGO_URI=your_mongo_db_connection_string
-    JWT_SECRET=your_jwt_secret_key
-    VAPID_PUBLIC_KEY=your_vapid_public_key
-    VAPID_PRIVATE_KEY=your_vapid_private_key
-    CLOUD_NAME=your_cloud_name
-    API_KEY=your_cloud_api_key
-    API_SECRET=your_cloud_api_secret
+   Add the following lines, adjusting values as needed:<br/>
+    PORT=5000<br/>
+    MONGO_URI=your_mongo_db_connection_string<br/>
+    JWT_SECRET=your_jwt_secret_key<br/>
+    VAPID_PUBLIC_KEY=your_vapid_public_key<br/>
+    VAPID_PRIVATE_KEY=your_vapid_private_key<br/>
+    CLOUD_NAME=your_cloud_name<br/>
+    API_KEY=your_cloud_api_key<br/>
+    API_SECRET=your_cloud_api_secret<br/>
 
-7. If you want to run test files, don’t forget to create the following file with the same variables as above:
+7. If you want to run test files, don’t forget to create the following file with the same variables as above:<br/>
     backend/.env.test
 
-8. Start the server from the root using the command:
-    npm start
 
-9. Open your browser and go to:
+
+8. Start the server from the root using the command:<br/>
+    ```bash
+        npm start
+    ```
+9. Open your browser and go to:<br/>
     http://localhost:5000
