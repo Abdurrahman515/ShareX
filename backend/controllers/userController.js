@@ -80,6 +80,22 @@ const getSuggestedUsers = async (req, res) => {
 	};
 };
 
+const checkUserAuth = async (req, res) => {
+	try {
+		const token = req.cookies.jwt;
+		const lang = req.query.lang || navigator.language.slice(0, 2);
+
+		if(!token) {
+			return res.status(401).json({ error: lang === 'ar' ? "انتهت صلاحية جلستك! الرجاء اعادة تسجيل الدخول" : "Your Session has expired! please login again" });
+		};
+
+		res.status(200).json({ success: true });
+	} catch (error) {
+		res.status(500).json({error: error.message});
+		console.log('error in checkUserAuth: ' + error.message);
+	}
+};
+
 const signupUser = async (req, res) => {
     try {
         const { name, email, username, password, lang } = req.body;
@@ -282,4 +298,4 @@ const freezeAccount = async (req, res) => {
 	};
 };
 
-export {signupUser, loginUser, logoutUser, followUnFollowUser, updateUser, getUserProfile, getSuggestedUsers, freezeAccount, getAllUsers};
+export {signupUser, loginUser, logoutUser, followUnFollowUser, updateUser, getUserProfile, getSuggestedUsers, freezeAccount, getAllUsers, checkUserAuth};
