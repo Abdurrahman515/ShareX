@@ -1,5 +1,5 @@
 import { Box, CloseButton, Container } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import UserPage from './pages/UserPage'
 import PostPage from './pages/PostPage'
@@ -41,6 +41,27 @@ const App = () => {
 
   const location = useLocation();
   const navigate = useNavigate();
+
+  const checkAuth = useCallback(async () => {
+    try {
+      const res = await fetch(`/api/users/checkauth?lang=${lang}`);
+      const data = await res.json();
+
+      if(data.error){
+        localStorage.removeItem("user-sharex");
+        navigate('/auth');
+        showErrorToast(data.error);
+        return;
+      };
+
+    } catch (error) {
+      console.log(error);
+    }
+  }, [lang, navigate, showErrorToast]);
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   useEffect(() => {
     const handleOnline = () => {
@@ -94,7 +115,7 @@ const App = () => {
 
     const subscribeToPush = async() => {
       if(!user) return;
-      const publicVapidKey = 'BHt94RLr72vwxxXH0GeBC8PTdpP7w14qbwDL_gCUuNoH0Btn9u1ErnmG7n2iucal94eeRom3mMbvzMSppxhHKpI'
+      const publicVapidKey = import.meta.env.VITE_VAPID_PUBLIC_KEY;
       try {
         if ('serviceWorker' in navigator){
           const registration = await navigator.serviceWorker.register('/sw.js');
