@@ -4,7 +4,7 @@
 
 ---
 
-<div dir="rtl" align="right">
+<div dir="rtl">
 
 ## 🟢 مقدمة
 
@@ -106,7 +106,7 @@
     </li>
     <li>
         قم بإنشاء الملف الاتي:<br/>
-            backend/.env
+            backend/.env<br/>
         وضع فيه السطور الاتية مع تعديل القيم حسب الحاجة:<br/>
             PORT=5000<br/>
             MONGO_URI=your_mongo_db_connection_string<br/>
