@@ -29,7 +29,7 @@ const App = () => {
   const [ isOnline, setIsOnline ] = useState(navigator.onLine);
 
   const lang = useRecoilValue(langAtom);
-  const user = useRecoilValue(userAtom);
+  const [ user, setUser ] = useRecoilState(userAtom);
   const outOfChatPage = useRecoilValue(outOfChatPageAtom);
   const [ selectedConversation, setSelectedConversation ] = useRecoilState(selectedConversationAtom);
   const [ conversations, setConversations ] = useRecoilState(conversationsAtom);
@@ -43,12 +43,14 @@ const App = () => {
   const navigate = useNavigate();
 
   const checkAuth = useCallback(async () => {
+    if(!user) return;
     try {
       const res = await fetch(`/api/users/checkauth?lang=${lang}`);
       const data = await res.json();
 
       if(data.error){
         localStorage.removeItem("user-sharex");
+        setUser(null);
         navigate('/auth');
         showErrorToast(data.error);
         return;
@@ -57,7 +59,9 @@ const App = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [lang, navigate, showErrorToast]);
+
+    //eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     checkAuth();
