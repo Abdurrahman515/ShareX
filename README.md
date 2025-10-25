@@ -79,9 +79,10 @@
     </li>
 </ol>
 
-    ```bash
-        git clone https://github.com/Abdurrahman515/ShareX
-    ``` 
+```bash
+    git clone https://github.com/Abdurrahman515/ShareX
+``` 
+
 <ol dir="rtl" start="2">
     <li>
         تأكد من تنزيل الأدوات البرمجية المطلوبة مثل Node.js ومحرر الأكواد.  
@@ -94,9 +95,9 @@
     </li>
 </ol>
 
-    ```bash
-        npm run build
-    ```
+```bash
+    npm run build
+```
 
 <ol dir="rtl" start="5">
     <li>
@@ -125,9 +126,10 @@
     </li>
 </ol>
 
-    ```bash
-        npm start
-    ```
+```bash
+    npm start
+```
+
 <ol dir="rtl" start="9">
     <li>
         افتح متصفحك على العنوان:<br/>
