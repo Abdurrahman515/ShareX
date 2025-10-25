@@ -77,9 +77,12 @@
     <li>
         قم بتحميل الكود على جهازك. 
     </li>
+</ol>
+
     ```bash
         git clone https://github.com/Abdurrahman515/ShareX
     ``` 
+<ol dir="rtl" start="2">
     <li>
         تأكد من تنزيل الأدوات البرمجية المطلوبة مثل Node.js ومحرر الأكواد.  
     </li>
@@ -89,9 +92,13 @@
     <li>
         قم بتنفيذ أمر البناء لتنزيل الحزم المطلوبة:
     </li>
+</ol>
+
     ```bash
         npm run build
     ```
+
+<ol dir="rtl" start="5">
     <li>
         قم بالذهاب الى الملف التالي والغي التعليق عن مجموعة السطور الموجودة اخر الملف:<br/>
             backend/app.js
@@ -116,9 +123,12 @@
     <li>
         قم بتشغيل الخادم من الجذر عن الطريق الامر:
     </li>
+</ol>
+
     ```bash
         npm start
     ```
+<ol dir="rtl" start="9">
     <li>
         افتح متصفحك على العنوان:<br/>
             http://localhost:5000
