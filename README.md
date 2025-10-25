@@ -73,39 +73,39 @@
 
 اتبع الخطوات التالية لتشغيل المشروع على جهازك المحلي:
 
-1. قم بتحميل الكود على جهازك.  
-2. تأكد من تنزيل الأدوات البرمجية المطلوبة مثل Node.js ومحرر الأكواد.  
-3. افتح مجلد المشروع الرئيسي **(وليس مجلدًا فرعيًا)** ثم افتح الطرفية (Terminal).  
-4. قم بتنفيذ أمر البناء لتنزيل الحزم المطلوبة:
-    ```bash
-        npm run build
-    ```
-5. قم بالذهاب الى الملف التالي والغي التعليق عن مجموعة السطور الموجودة اخر الملف:<br/>
-    backend/app.js
+    1. قم بتحميل الكود على جهازك.  
+    2. تأكد من تنزيل الأدوات البرمجية المطلوبة مثل Node.js ومحرر الأكواد.  
+    3. افتح مجلد المشروع الرئيسي **(وليس مجلدًا فرعيًا)** ثم افتح الطرفية (Terminal).  
+    4. قم بتنفيذ أمر البناء لتنزيل الحزم المطلوبة:
+        ```bash
+            npm run build
+        ```
+    5. قم بالذهاب الى الملف التالي والغي التعليق عن مجموعة السطور الموجودة اخر الملف:<br/>
+        backend/app.js
 
-6. قم بإنشاء الملف الاتي:<br/>
-    backend/.env
+    6. قم بإنشاء الملف الاتي:<br/>
+        backend/.env
 
-   وضع فيه السطور الاتية مع تعديل القيم حسب الحاجة:<br/>
-    PORT=5000<br/>
-    MONGO_URI=your_mongo_db_connection_string<br/>
-    JWT_SECRET=your_jwt_secret_key<br/>
-    VAPID_PUBLIC_KEY=your_vapid_public_key<br/>
-    VAPID_PRIVATE_KEY=your_vapid_private_key<br/>
-    CLOUD_NAME=your_cloud_name<br/>
-    API_KEY=your_cloud_api_key<br/>
-    API_SECRET=your_cloud_api_secret<br/>
+    وضع فيه السطور الاتية مع تعديل القيم حسب الحاجة:<br/>
+        PORT=5000<br/>
+        MONGO_URI=your_mongo_db_connection_string<br/>
+        JWT_SECRET=your_jwt_secret_key<br/>
+        VAPID_PUBLIC_KEY=your_vapid_public_key<br/>
+        VAPID_PRIVATE_KEY=your_vapid_private_key<br/>
+        CLOUD_NAME=your_cloud_name<br/>
+        API_KEY=your_cloud_api_key<br/>
+        API_SECRET=your_cloud_api_secret<br/>
 
-7. ان كنت تريد تشغيل ملفات الاختبار لا تنسى اضافة الملف الاتي مع نفس المتغيرات اعلاه:<br/>
-    backend/.env.test
+    7. ان كنت تريد تشغيل ملفات الاختبار لا تنسى اضافة الملف الاتي مع نفس المتغيرات اعلاه:<br/>
+        backend/.env.test
 
-8. قم بتشغيل الخادم من الجذر عن الطريق الامر:
-    ```bash
-    npm start
-    ```
+    8. قم بتشغيل الخادم من الجذر عن الطريق الامر:
+        ```bash
+        npm start
+        ```
 
-9. افتح متصفحك على العنوان:<br/>
-    http://localhost:5000
+    9. افتح متصفحك على العنوان:<br/>
+        http://localhost:5000
 
 </div>
 
